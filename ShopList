@@ -1,6 +1,6 @@
 def initialize_file():
     try:
-        file = open("shopping_list.txt", "x")  # x = create only, fails if file exists
+        file = open("shopping_list.txt", "x")
         print("File created successfully!")
         file.close()
     except FileExistsError:
