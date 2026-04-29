@@ -1,8 +1,63 @@
 def initialize_file():
-try:
-file = open("shopping_list.txt", "x")
-print("File created successfully!")
-file.close()
-except FileExistsError:
-print("File already exists. Skipping initialization.")
+    try:
+        file = open("shopping_list.txt", "x")
+        print("File created successfully!")
+        file.close()
+    except FileExistsError:
+        print("File already exists. Skipping initialization.")
+
 initialize_file()
+
+def write_initial_data():
+    file = open("shopping_list.txt", "w")
+    initial_items = ["Eggs", "Rice", "Oats"]
+    for item in initial_items:
+        file.write(item + "\n")
+    print("Initial data written.")
+    file.close()
+write_initial_data()
+
+def append_item():    
+    item = input("Enter item to add: ")
+    file = open("shopping_list.txt", "a")
+    file.write(item + "\n")
+    print(f"'{item}' added to the list.")
+    file.close()
+append_item()
+
+def read_items():
+    file = open("shopping_list.txt", "r")
+    lines = file.readlines()
+    file.close()
+    print("\n--- Shopping List ---")
+    for i, line in enumerate(lines, 1):
+        print(f"{i}. {line.strip()}")
+    print(f"\nTotal items: {len(lines)}")
+
+read_items()
+
+def search_item():
+    keyword = input("Search item: ").lower()
+    file = open("shopping_list.txt", "r")
+    lines = file.readlines()
+    file.close()
+    results = [l.strip() for l in lines if keyword in l.lower()]
+    print("Found:", results if results else "Nothing found.")
+
+def delete_item():
+    item = input("Delete item: ").lower()
+    file = open("shopping_list.txt", "r")
+    lines = file.readlines()
+    file.close()
+    updated = [l for l in lines if item not in l.lower()]
+    if len(updated) == len(lines):
+        print("Item not found.")
+    else:
+        file = open("shopping_list.txt", "w")
+        file.writelines(updated)
+        file.close()
+        print("Item deleted successfully.")
+
+search_item()
+delete_item()
+
