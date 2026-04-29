@@ -1,0 +1,8 @@
+def initialize_file():
+try:
+file = open("shopping_list.txt", "x")
+print("File created successfully!")
+file.close()
+except FileExistsError:
+print("File already exists. Skipping initialization.")
+initialize_file()
