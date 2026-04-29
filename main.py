@@ -60,4 +60,3 @@ def delete_item():
 
 search_item()
 delete_item()
-
