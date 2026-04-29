@@ -7,3 +7,20 @@ def initialize_file():
         print("File already exists. Skipping initialization.")
 
 initialize_file()
+
+def write_initial_data():
+    file = open("shopping_list.txt", "w")
+    initial_items = ["Eggs", "Rice", "Oats"]
+    for item in initial_items:
+        file.write(item + "\n")
+    print("Initial data written.")
+    file.close()
+write_initial_data()
+
+def append_item():    
+    item = input("Enter item to add: ")
+    file = open("shopping_list.txt", "a")
+    file.write(item + "\n")
+    print(f"'{item}' added to the list.")
+    file.close()
+append_item()
